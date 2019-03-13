@@ -2,6 +2,7 @@ package test;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
 import okhttp3.*;
 
 import java.io.IOException;
@@ -11,8 +12,8 @@ import java.util.concurrent.TimeUnit;
 public class OKHttpUtils {
 
     private static final MediaType MEDIATYPE_JSON = MediaType.parse("application/json; charset=utf-8");
-    final static OkHttpClient okHttpClient = new OkHttpClient.Builder().connectTimeout(60, TimeUnit.SECONDS).writeTimeout(60,TimeUnit.SECONDS).readTimeout(60,TimeUnit.SECONDS).build();
-    final static ObjectMapper objectMapper = new ObjectMapper();
+    private final static OkHttpClient okHttpClient = new OkHttpClient.Builder().connectTimeout(60, TimeUnit.SECONDS).writeTimeout(60,TimeUnit.SECONDS).readTimeout(60,TimeUnit.SECONDS).build();
+    private final static ObjectMapper objectMapper = new ObjectMapper().enable(SerializationFeature.INDENT_OUTPUT);
 
 
     /**
@@ -102,8 +103,9 @@ public class OKHttpUtils {
             responseBody = response.body();
             if(response.isSuccessful()){
                 final String result = responseBody.string();
-                System.out.println("Response Code: " + response.code() + "\n返回结果为: " + result);
-                return objectMapper.readValue(result, valueType);
+                T t = objectMapper.readValue(result, valueType);
+                System.out.println("Response Code: " + response.code() + "\nResult: " + objectMapper.writeValueAsString(t) + "\n");
+                return t;
             } else {
                 System.out.println(responseBody);
             }
