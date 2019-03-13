@@ -51,7 +51,6 @@ public class App
      */
     public static AccessTokenResponse getAccessToken(String timestamp) throws IOException {
         final String keyInfo = getKeyInfo(timestamp);
-        System.out.println("请求的keyInfo为: " + keyInfo);
         Map<String,String> dataMap = new HashMap<>();
         dataMap.put("appId",APP_ID);
         dataMap.put("keyInfo",keyInfo);
