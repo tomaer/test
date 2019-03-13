@@ -104,7 +104,7 @@ public class OKHttpUtils {
             if(response.isSuccessful()){
                 final String result = responseBody.string();
                 T t = objectMapper.readValue(result, valueType);
-                System.out.println("Response Code: " + response.code() + "\n返回结果为: " + objectMapper.writeValueAsString(t) + "\n");
+                System.out.println("Response Code: " + response.code() + "\nResult: " + objectMapper.writeValueAsString(t) + "\n");
                 return t;
             } else {
                 System.out.println(responseBody);
