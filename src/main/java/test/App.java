@@ -32,6 +32,7 @@ public class App
         OauthTicketResponse oauthTicketResponse = createOauthTicket(accessTokenResponse.data.accessToken);
         getJump2eduyunLoginUrl(oauthTicketResponse.accessTicket);
         getJump2eduyunLoginUrl2(oauthTicketResponse.accessTicket,accessTokenResponse.data.accessToken);
+        getOrgList(accessTokenResponse.data.accessToken);
         getIndependentAppRegister(accessTokenResponse.data.accessToken);
     }
 
@@ -123,6 +124,24 @@ public class App
         Object object = OKHttpUtils.post(URL + "/cert/independentAppRegister?accessToken="+accessToken,null,dataMap,AppRegisterResponse.class);
         if(null != object) {
             return (AppRegisterResponse) object;
+        }
+        return null;
+    }
+
+    /**
+     * 获取全部机构编码信息
+     * @param accessToken
+     * @return
+     * @throws IOException
+     */
+    public static Object getOrgList(String accessToken) throws IOException{
+        Map<String,String> dataMap = new HashMap<>();
+        //参数皆为可选参数
+        dataMap.put("pageNo","1");
+        dataMap.put("pageSize","5");
+        Object object = OKHttpUtils.post(URL + "/baseInfo/getOrgList?accessToken="+accessToken,null,dataMap,Object.class);
+        if(null != object) {
+            return object;
         }
         return null;
     }
