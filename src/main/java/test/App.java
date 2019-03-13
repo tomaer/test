@@ -4,6 +4,7 @@ import org.apache.commons.codec.binary.Hex;
 import org.apache.commons.codec.digest.HmacAlgorithms;
 import org.apache.commons.codec.digest.HmacUtils;
 import test.reponse.AccessTokenResponse;
+import test.reponse.AppRegisterResponse;
 import test.reponse.OauthTicketResponse;
 
 import java.io.IOException;
@@ -31,6 +32,7 @@ public class App
         OauthTicketResponse oauthTicketResponse = createOauthTicket(accessTokenResponse.data.accessToken);
         getJump2eduyunLoginUrl(oauthTicketResponse.accessTicket);
         getJump2eduyunLoginUrl2(oauthTicketResponse.accessTicket,accessTokenResponse.data.accessToken);
+        getIndependentAppRegister(accessTokenResponse.data.accessToken);
     }
 
     /**
@@ -102,6 +104,28 @@ public class App
         loginUrl = loginUrl.replace("{accessTicket}",accessTicket).replace("{accessToken}",accessToken);
         System.out.println("Eduyun Login Url2: " + loginUrl);
         return loginUrl;
+    }
+
+    /**
+     * 校验应用用户登录
+     * @param accessToken
+     * @return
+     */
+    public static AppRegisterResponse getIndependentAppRegister(String accessToken) throws IOException{
+        Map<String,String> dataMap = new HashMap<>();
+        dataMap.put("userId","16764");
+        dataMap.put("loginAccount","SH000064");
+        dataMap.put("type","1");
+        //orgId可根据用户所在学校获取，不存在时根据/baseInfo/getOrgList随意获取一个
+        dataMap.put("orgId","2fb6a725c584437a81758faf0868c63d");
+        //身份(0学生 1教师 2家长 3学校工作人员 4机构工作人员)
+        dataMap.put("userIdentity","1");
+
+        Object object = OKHttpUtils.post(URL + "/cert/independentAppRegister?accessToken="+accessToken,null,dataMap,AppRegisterResponse.class);
+        if(null != object) {
+            return (AppRegisterResponse) object;
+        }
+        return null;
     }
 
 
