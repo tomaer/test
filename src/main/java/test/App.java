@@ -6,9 +6,13 @@ import org.apache.commons.codec.digest.HmacUtils;
 import test.reponse.AccessTokenResponse;
 import test.reponse.AppRegisterResponse;
 import test.reponse.OauthTicketResponse;
+import test.reponse.org.OrgListResponse;
+import test.reponse.org.Orginfo;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 
@@ -29,11 +33,11 @@ public class App
     public static void main( String[] args ) throws IOException {
         String timestamp = String.valueOf(System.currentTimeMillis());
         AccessTokenResponse accessTokenResponse = getAccessToken(timestamp);
-        OauthTicketResponse oauthTicketResponse = createOauthTicket(accessTokenResponse.data.accessToken);
-        getJump2eduyunLoginUrl(oauthTicketResponse.accessTicket);
-        getJump2eduyunLoginUrl2(oauthTicketResponse.accessTicket,accessTokenResponse.data.accessToken);
+        //OauthTicketResponse oauthTicketResponse = createOauthTicket(accessTokenResponse.data.accessToken);
+        //getJump2eduyunLoginUrl(oauthTicketResponse.accessTicket);
+        //getJump2eduyunLoginUrl2(oauthTicketResponse.accessTicket,accessTokenResponse.data.accessToken);
         getOrgList(accessTokenResponse.data.accessToken);
-        getIndependentAppRegister(accessTokenResponse.data.accessToken);
+        //getIndependentAppRegister(accessTokenResponse.data.accessToken);
     }
 
     /**
@@ -134,17 +138,25 @@ public class App
      * @return
      * @throws IOException
      */
-    public static Object getOrgList(String accessToken) throws IOException{
-        Map<String,String> dataMap = new HashMap<>();
+    public static void getOrgList(String accessToken) throws IOException {
+        List<Orginfo> allOrginfoList = new ArrayList<>();
         //参数皆为可选参数
-        dataMap.put("pageNo","1");
-        dataMap.put("pageSize","5");
-        Object object = OKHttpUtils.post(URL + "/baseInfo/getOrgList?accessToken="+accessToken,null,dataMap,Object.class);
-        if(null != object) {
-            return object;
+        final int pageSize = 5000;
+        for(int i = 1; i <= 123; i++ ) {
+            Map<String,String> dataMap = new HashMap<>();
+            dataMap.put("pageNo",String.valueOf(i));
+            dataMap.put("pageSize",String.valueOf(pageSize));
+            Object object = OKHttpUtils.post(URL + "/baseInfo/getOrgList?accessToken="+accessToken,null,dataMap, OrgListResponse.class);
+            if (null != object) {
+                List<Orginfo> orginfoList = ((OrgListResponse)object).getData().getDataList();
+                if (null != orginfoList && !orginfoList.isEmpty() && orginfoList.size() > 0) {
+                    allOrginfoList.addAll(orginfoList);
+                }
+            }
         }
-        return null;
+        if (null != allOrginfoList && !allOrginfoList.isEmpty() && allOrginfoList.size() > 0) {
+            //TODO 插入数据库
+        }
     }
-
 
 }
