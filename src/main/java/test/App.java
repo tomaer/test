@@ -37,7 +37,9 @@ public class App
         //getJump2eduyunLoginUrl(oauthTicketResponse.accessTicket);
         //getJump2eduyunLoginUrl2(oauthTicketResponse.accessTicket,accessTokenResponse.data.accessToken);
         getOrgList(accessTokenResponse.data.accessToken);
-        //getIndependentAppRegister(accessTokenResponse.data.accessToken);
+        getIndependentAppRegister(accessTokenResponse.data.accessToken);
+        //实名认证
+        getCretValidate(accessTokenResponse.data.accessToken);
     }
 
     /**
@@ -159,4 +161,21 @@ public class App
         }
     }
 
+    /**
+     * 实名认证校验
+     * @param accessToken
+     * @return
+     * @throws IOException
+     */
+    public static Object getCretValidate(String accessToken) throws IOException{
+        Map<String,String> dataMap = new HashMap<>();
+        dataMap.put("userId","16764");//已实名注册的ID为27455
+        dataMap.put("loginAccount","SH000064");//已实名注册的账号为SH000090
+
+        Object object = OKHttpUtils.post(URL + "/userSession/validateSession?accessToken="+accessToken,null,dataMap,Object.class);
+        if(null != object) {
+            return object;
+        }
+        return null;
+    }
 }
