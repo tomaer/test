@@ -48,6 +48,25 @@ public class OKHttpUtils {
     }
 
     /**
+     * 通用的put请求方法
+     * @param url
+     * @param headerMap
+     * @param object
+     * @param valueType
+     * @param <T>
+     * @return
+     * @throws JsonProcessingException
+     */
+    public static <T> Object put(final String url, final Map<String,String> headerMap ,final Object object, final Class<T> valueType) throws JsonProcessingException {
+        final String data = objectMapper.writeValueAsString(object);
+        System.out.println("Put请求地址为: "+ url + "\nbody: "+ data);
+        RequestBody body = RequestBody.create(MEDIATYPE_JSON,data);
+        Request request = getRequestBuilder(url,headerMap).put(body).build();
+        return parseResponse(request,valueType);
+    }
+
+
+    /**
      *
      * @param url
      * @param headerMap
