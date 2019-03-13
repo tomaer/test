@@ -109,7 +109,7 @@ public class App
     }
 
     /**
-     * 校验应用用户登录
+     * 校验应用用户登录(type为“0”表示接口登记，type为“1”表示页面登记)
      * @param accessToken
      * @return
      */
