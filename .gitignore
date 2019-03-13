@@ -1,2 +1,11 @@
+**/rebel.xml
 .idea
-.DS_Store
+**/target/
+*.iml
+*.tar.gz
+**/.DS_Store
+.settings/org.eclipse.core.resources.prefs
+.settings/org.eclipse.m2e.core.prefs
+package.sh
+/bin
+/.project
