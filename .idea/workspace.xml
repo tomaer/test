@@ -2,10 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="aa69ebd8-d22c-408e-bee2-ce2fc8b6cf94" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/test/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/test/App.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/test/OKHttpUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/test/OKHttpUtils.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/test/App.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/test/App.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/test/OKHttpUtils.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/test/OKHttpUtils.class" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -26,10 +26,10 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/test/App.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="288">
+            <state relative-caret-position="162">
               <caret line="53" selection-start-line="53" selection-end-line="53" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -38,11 +38,20 @@
           </provider>
         </entry>
       </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/.gitignore">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="150">
+              <caret line="10" column="9" selection-start-line="10" selection-start-column="9" selection-end-line="10" selection-end-column="9" />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/test/OKHttpUtils.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="314">
-              <caret line="106" column="127" selection-start-line="106" selection-start-column="127" selection-end-line="106" selection-end-column="127" />
+            <state relative-caret-position="191">
+              <caret line="106" column="82" selection-start-line="106" selection-start-column="82" selection-end-line="106" selection-end-column="82" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -119,8 +128,9 @@
         <option value="$PROJECT_DIR$/src/main/java/test/reponse/OauthTicket.java" />
         <option value="$PROJECT_DIR$/src/main/java/test/reponse/AccessToken.java" />
         <option value="$PROJECT_DIR$/src/main/java/test/reponse/AccessTokenResponse.java" />
-        <option value="$PROJECT_DIR$/src/main/java/test/OKHttpUtils.java" />
         <option value="$PROJECT_DIR$/src/main/java/test/App.java" />
+        <option value="$PROJECT_DIR$/src/main/java/test/OKHttpUtils.java" />
+        <option value="$PROJECT_DIR$/.gitignore" />
       </list>
     </option>
   </component>
@@ -237,10 +247,15 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1552461312997" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1552461631234" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="settings.editor.selected.configurable" value="Errors" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
+    </key>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -286,12 +301,20 @@
       <updated>1552390786554</updated>
       <workItem from="1552390788212" duration="1313000" />
       <workItem from="1552398066668" duration="10101000" />
-      <workItem from="1552459109567" duration="1815000" />
+      <workItem from="1552459109567" duration="2059000" />
     </task>
+    <task id="LOCAL-00001" summary="修改输出">
+      <created>1552461453126</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1552461453126</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="13229000" />
+    <option name="totallyTimeSpent" value="13473000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="41" y="23" width="1879" height="1177" extended-state="0" />
@@ -306,13 +329,13 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.3299539" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.5170507" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.5170507" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" order="8" />
+      <window_info anchor="bottom" id="Version Control" order="8" visible="true" weight="0.3299539" />
       <window_info anchor="bottom" id="Database Changes" order="9" />
       <window_info anchor="bottom" id="Terminal" order="10" weight="0.6764977" />
       <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" />
@@ -361,6 +384,10 @@
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="修改输出" />
+    <option name="LAST_COMMIT_MESSAGE" value="修改输出" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/src/main/java/test/EncryptionUtils.java" />
@@ -448,8 +475,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/test/OKHttpUtils.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="314">
-          <caret line="106" column="127" selection-start-line="106" selection-start-column="127" selection-end-line="106" selection-end-column="127" />
+        <state relative-caret-position="191">
+          <caret line="106" column="82" selection-start-line="106" selection-start-column="82" selection-end-line="106" selection-end-column="82" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -458,11 +485,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/test/App.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="288">
+        <state relative-caret-position="162">
           <caret line="53" selection-start-line="53" selection-end-line="53" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="10" column="9" selection-start-line="10" selection-start-column="9" selection-end-line="10" selection-end-column="9" />
         </state>
       </provider>
     </entry>
