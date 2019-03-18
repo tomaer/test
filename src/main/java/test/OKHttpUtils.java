@@ -24,7 +24,7 @@ public class OKHttpUtils {
      * @param <T>
      * @return
      */
-    public static <T> Object get(final String url, final Map<String,String> headerMap , final Class<T> valueType) {
+    public static <T> T get(final String url, final Map<String,String> headerMap , final Class<T> valueType) {
         System.out.println("Get请求，地址为: " + url);
         Request request = getRequestBuilder(url,headerMap).build();
         return parseResponse(request, valueType);
@@ -40,7 +40,7 @@ public class OKHttpUtils {
      * @return
      * @throws JsonProcessingException
      */
-    public static <T> Object post(final String url, final Map<String,String> headerMap ,final Object object, final Class<T> valueType) throws JsonProcessingException {
+    public static <T> T post(final String url, final Map<String,String> headerMap ,final Object object, final Class<T> valueType) throws JsonProcessingException {
         final String data = objectMapper.writeValueAsString(object);
         System.out.println("Post请求地址为: "+ url + "\nbody: "+ data);
         RequestBody body = RequestBody.create(MEDIATYPE_JSON,data);
@@ -58,7 +58,7 @@ public class OKHttpUtils {
      * @return
      * @throws JsonProcessingException
      */
-    public static <T> Object put(final String url, final Map<String,String> headerMap ,final Object object, final Class<T> valueType) throws JsonProcessingException {
+    public static <T> T put(final String url, final Map<String,String> headerMap ,final Object object, final Class<T> valueType) throws JsonProcessingException {
         final String data = objectMapper.writeValueAsString(object);
         System.out.println("Put请求地址为: "+ url + "\nbody: "+ data);
         RequestBody body = RequestBody.create(MEDIATYPE_JSON,data);
@@ -95,7 +95,7 @@ public class OKHttpUtils {
      * @param <T>
      * @return
      */
-    private static <T> Object parseResponse(final Request request,final Class<T> valueType) {
+    private static <T> T parseResponse(final Request request,final Class<T> valueType) {
         Response response = null;
         ResponseBody responseBody = null;
         try {

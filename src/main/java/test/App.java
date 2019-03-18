@@ -23,8 +23,8 @@ import java.util.Map;
 public class App 
 {
 
-    public static final String APP_ID = "YaSrkbeM1NBWCJTtoXV1TFFuohYh1QSs";
-    public static final String APP_KEY = "23IV6JFCGT3Igc3PE7xRKDYF21fYyXgR";
+    public static final String APP_ID = "jRgLxal4mk7foLv4268HLLwqT3I1V3BZ";
+    public static final String APP_KEY = "mPcp9l84RggVkKqCJpeMNwJYdjUTs1be";
     public static final String SYS_CODE = "0";
 
 
@@ -33,13 +33,14 @@ public class App
     public static void main( String[] args ) throws IOException {
         String timestamp = String.valueOf(System.currentTimeMillis());
         AccessTokenResponse accessTokenResponse = getAccessToken(timestamp);
+        //实名认证
+        //getCretValidate(accessTokenResponse.data.accessToken);
         //OauthTicketResponse oauthTicketResponse = createOauthTicket(accessTokenResponse.data.accessToken);
         //getJump2eduyunLoginUrl(oauthTicketResponse.accessTicket);
         //getJump2eduyunLoginUrl2(oauthTicketResponse.accessTicket,accessTokenResponse.data.accessToken);
-        getOrgList(accessTokenResponse.data.accessToken);
-        getIndependentAppRegister(accessTokenResponse.data.accessToken);
-        //实名认证
-        getCretValidate(accessTokenResponse.data.accessToken);
+        //getOrgList(accessTokenResponse.data.accessToken);
+        //getIndependentAppRegister(accessTokenResponse.data.accessToken);
+
     }
 
     /**
@@ -66,11 +67,8 @@ public class App
         dataMap.put("timeStamp",timestamp);
         dataMap.put("sysCode",SYS_CODE);
 
-        Object object = OKHttpUtils.post(URL + "/apigateway/getAccessToken",null,dataMap,AccessTokenResponse.class);
-        if(null != object) {
-            return (AccessTokenResponse) object;
-        }
-        return null;
+        AccessTokenResponse accessTokenResponse = OKHttpUtils.post(URL + "/apigateway/getAccessToken",null,dataMap,AccessTokenResponse.class);
+        return accessTokenResponse;
     }
 
     /**
@@ -80,11 +78,8 @@ public class App
      * @throws IOException
      */
     public static OauthTicketResponse createOauthTicket(final String accessToken) throws IOException {
-        Object object = OKHttpUtils.get(URL + "/oauth/createOauthTicket?accessToken="+accessToken,null,OauthTicketResponse.class);
-        if(null != object) {
-            return (OauthTicketResponse) object;
-        }
-        return null;
+        OauthTicketResponse oauthTicketResponse = OKHttpUtils.get(URL + "/oauth/createOauthTicket?accessToken="+accessToken,null,OauthTicketResponse.class);
+        return oauthTicketResponse;
     }
 
     /**
@@ -127,11 +122,8 @@ public class App
         //身份(0学生 1教师 2家长 3学校工作人员 4机构工作人员)
         dataMap.put("userIdentity","1");
 
-        Object object = OKHttpUtils.post(URL + "/cert/independentAppRegister?accessToken="+accessToken,null,dataMap,AppRegisterResponse.class);
-        if(null != object) {
-            return (AppRegisterResponse) object;
-        }
-        return null;
+        AppRegisterResponse appRegisterResponse = OKHttpUtils.post(URL + "/cert/independentAppRegister?accessToken="+accessToken,null,dataMap,AppRegisterResponse.class);
+        return appRegisterResponse;
     }
 
     /**
@@ -169,13 +161,23 @@ public class App
      */
     public static Object getCretValidate(String accessToken) throws IOException{
         Map<String,String> dataMap = new HashMap<>();
-        dataMap.put("userId","16764");//已实名注册的ID为27455
-        dataMap.put("loginAccount","SH000064");//已实名注册的账号为SH000090
-
+        dataMap.put("userId","27455");//已实名注册的ID为
+        dataMap.put("loginAccount","SH000090");//已实名注册的账号为
         Object object = OKHttpUtils.post(URL + "/userSession/validateSession?accessToken="+accessToken,null,dataMap,Object.class);
-        if(null != object) {
-            return object;
+        Map<String,Object> resultMap = (Map<String,Object>) object;
+
+        //用户已经在eduyun系统平台通过了实名认证
+        if (null != resultMap && !resultMap.isEmpty() && "000000".equals(resultMap.get("retCode"))) {
+            //TODO 在hzs_eduyun_user_verified表中insert一条记录,用来记录用户已经实名认证过
+            //TODO 返回 json {"eduyunVerified":true,"url":""}
+            System.out.println("------");
+        } else if (null != resultMap && !resultMap.isEmpty() && "300027".equals(resultMap.get("retCode"))) {
+            //TODO 返回 json {"eduyunVerified":false,"url":”http://system.eduyun.cn:80/bmp-web/certification/indexPage?p5zVo4cYqZL02OtPcaiZNHx4aFpd0jESMrYFOFlx0H7kdQtEGWwChTfianf7Pjeg8xiHRc0enzOlprTQPR3smdgFW3m0op+TMynNts5VslFBRmlyH9M4fkFUVTT2tjrufLt/R/lpIQvPXxRV3F6+4A==”}
+            Map<String,String> dataMap1 = (Map<String,String>) resultMap.get("data");
+            System.out.println(dataMap1.get("certUrl"));
         }
+
+
         return null;
     }
 }
