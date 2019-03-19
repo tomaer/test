@@ -23,8 +23,8 @@ import java.util.Map;
 public class App 
 {
 
-    public static final String APP_ID = "jRgLxal4mk7foLv4268HLLwqT3I1V3BZ";
-    public static final String APP_KEY = "mPcp9l84RggVkKqCJpeMNwJYdjUTs1be";
+    public static final String APP_ID = "";
+    public static final String APP_KEY = "";
     public static final String SYS_CODE = "0";
 
 
