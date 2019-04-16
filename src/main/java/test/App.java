@@ -35,11 +35,13 @@ public class App
         AccessTokenResponse accessTokenResponse = getAccessToken(timestamp);
         //实名认证
         //getCretValidate(accessTokenResponse.data.accessToken);
-        //OauthTicketResponse oauthTicketResponse = createOauthTicket(accessTokenResponse.data.accessToken);
+//        OauthTicketResponse oauthTicketResponse = createOauthTicket(accessTokenResponse.data.accessToken);
         //getJump2eduyunLoginUrl(oauthTicketResponse.accessTicket);
         //getJump2eduyunLoginUrl2(oauthTicketResponse.accessTicket,accessTokenResponse.data.accessToken);
         //getOrgList(accessTokenResponse.data.accessToken);
         //getIndependentAppRegister(accessTokenResponse.data.accessToken);
+//        validaTicket(accessTokenResponse.data.accessToken,"d3B2M2JiZWYwZDYtNTMyNy00ZGZkLWJlZjAtZDY1MzI3ZGRmZGRkMTU1NTM5OTk1NTczNw==");
+
 
     }
 
@@ -180,4 +182,20 @@ public class App
 
         return null;
     }
+
+
+    /**
+     * 验证用户会话ticket
+     * @param accessToken
+     * @param ticket
+     * @return
+     * @throws IOException
+     */
+    public static Object validaTicket(String accessToken,String ticket) throws IOException{
+        Map<String,String> dataMap = new HashMap<>();
+        dataMap.put("ticket",ticket);
+        Object validaTicket = OKHttpUtils.post(URL + "/userSession/validaTicket?accessToken="+accessToken,null,dataMap,Object.class);
+        return validaTicket;
+    }
+
 }
